@@ -1,0 +1,21 @@
+name: greet
+
+on:
+  workflow_dispatch:
+    inputs:
+      name1:
+        description: 'Name 1'
+        required: true
+        default: 'Alice'
+      name2:
+        description: 'Name 2'
+        required: true
+        default: 'Bob'
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello to both
+        run: |
+          echo "Hello ${{ github.event.inputs.names1 }} and ${{ github.event.inputs.name2 }}!"
