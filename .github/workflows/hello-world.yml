@@ -16,4 +16,3 @@ jobs:
         
       - name: Say World
         run: echo "World!"
-        if: ${{ github.event.inputs.input != '' }}
