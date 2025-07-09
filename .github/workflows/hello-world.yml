@@ -1,0 +1,19 @@
+name: hello-world
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello
+        run: echo "Hello"
+        
+      - name: Say World
+        run: echo "World!"
+        if: ${{ github.event.inputs.input != '' }}
