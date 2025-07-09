@@ -1,0 +1,26 @@
+name: Build Docker Image
+
+on:
+  workflow_dispatch: # Allows manual trigger via GitHub UI
+
+env:
+      ENVIRONMENT: production     # Regular environment variable
+      API_KEY: ${{ secrets.API_KEY }}  # GitHub secret for sensitive data
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest  # Use the latest Ubuntu VM as a runner
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Build the Docker image using the Dockerfile in the root directory
+      - name: Build Docker Image
+        run: |
+          docker build \
+            --build-arg API_KEY=${{ env.API_KEY }}  # Pass the environment variable
+            --build-arg ENVIRONMENT=${{ env.ENVIRONMENT }}  # Use the ENVIRONMENT variable
+            -t your-image-name:latest .
