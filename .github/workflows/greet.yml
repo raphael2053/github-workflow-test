@@ -1,6 +1,9 @@
 name: greet
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       name1:
@@ -18,4 +21,4 @@ jobs:
     steps:
       - name: Say hello to both
         run: |
-          echo "Hello ${{ github.event.inputs.names1 }} and ${{ github.event.inputs.name2 }}!"
+          echo "Hello ${{ github.event.inputs.name1 }} and ${{ github.event.inputs.name2 }}!"
